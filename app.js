@@ -9,6 +9,7 @@ db.connect();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var orderRouter = require('./routes/order');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/order', orderRouter);
 
 
 module.exports = app;
