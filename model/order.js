@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let orderSchema = new Schema({
-  create_time: {type: Date, default: new Date().getTime()}, // 创建时间
   order_status: {type: Number, default: 0}, // 订单状态 0-待付款 1-待发货 2-待收货 3-已完成
   user_id: {type: String, required: true},  // 用户id
   tel: {type: Number, required: true}, // 收货人电话
@@ -17,8 +16,7 @@ let orderSchema = new Schema({
       buy_count: {type: Number, required: true},  // 购买数量
     }
   ]
-
-});
+}, {timestamps: {createdAt: "create_time"}});
 let orderModel = mongoose.model('orders', orderSchema)
 
 module.exports = orderModel
