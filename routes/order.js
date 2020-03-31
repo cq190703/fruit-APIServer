@@ -31,4 +31,15 @@ router.get('/getOrderById', (req, res, next) => {
     res.send({code: 1, msg: e})
   })
 });
+
+// 通过id删除订单
+router.get('/delOrderById', (req, res, next) => {
+  let {_id} = req.query
+  orderController.delOrderById(_id).then(data => {
+    res.send({code: 0, msg: "删除成功"});
+  }).catch(e => {
+    res.send({code: 1, msg: e})
+  })
+});
+
 module.exports = router;

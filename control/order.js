@@ -16,7 +16,12 @@ module.exports = {
 
   // 通过id查询订单
   async getOrderById(_id) {
-    let resut = await orderModel.find({_id});
+    let resut = await orderModel.find({_id}).populate("user_id","username").populate("items.goods_id");
+    return resut;
+  },
+  // 通过id删除订单
+  async delOrderById(_id) {
+    let resut = await orderModel.deleteOne({_id});
     return resut;
   }
 }
