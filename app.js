@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var administratorRouter = require('./routes/Administrator')
 var orderRouter = require('./routes/order');
+var goodsRouter = require('./routes/goods');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/admin',administratorRouter)
 app.use(error)
 app.use('/order', orderRouter);
+app.use('/goods', goodsRouter);
 
 
 module.exports = app;
