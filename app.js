@@ -5,11 +5,11 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 const db = require("./model/db");
 db.connect();
-
+const error = require('./utils/error')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var administratorRouter = require('./routes/Administrator')
 var app = express();
 
 app.use(logger('dev'));
@@ -24,6 +24,7 @@ app.use(bodyParser.json())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/admin',administratorRouter)
+app.use(error)
 
 module.exports = app;
