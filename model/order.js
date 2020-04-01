@@ -5,8 +5,9 @@ let Schema = mongoose.Schema;
 mongoose.model("goods", {})
 
 let orderSchema = new Schema({
-  order_status: {type: Number, default: 0}, // 订单状态 0-待付款 1-待发货 2-待收货 3-已完成
+  order_status: {type: Number, default: 0}, // 订单状态 -1-已取消 0-已提交、待付款 1-已付款、代发货 2-已发货、待收货 3-已收货、已完成
   user_id: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},  // 用户id
+  consignee: {type: String, required: true}, // 收货人
   tel: {type: Number, required: true}, // 收货人电话
   address: {type: String, required: true}, // 收货地址
   price: {type: Number, required: true},  // 总价格
