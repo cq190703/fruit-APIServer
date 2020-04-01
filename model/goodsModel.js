@@ -17,7 +17,7 @@ let goodsScheme = mongoose.Schema({
 	unit:{type:String,default:"斤"},
 })
 
-let goodsModel = mongoose.model("goods",goodsScheme)
+let goodsModel = mongoose.model("good",goodsScheme)
 module.exports = goodsModel
 
 
