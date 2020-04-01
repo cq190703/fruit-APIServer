@@ -10,6 +10,8 @@ const error = require('./utils/error')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var administratorRouter = require('./routes/Administrator')
+var orderRouter = require('./routes/order');
+
 var app = express();
 
 app.use(logger('dev'));
@@ -26,5 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin',administratorRouter)
 app.use(error)
+app.use('/order', orderRouter);
+
 
 module.exports = app;
