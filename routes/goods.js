@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const {insertGoods,findGoods,delGoods,putAway,findOne,updateGoods} = require('../control/goods')
+const authPermission = require("../minddlewera/authPermissions")
+const autoToken = require("../minddlewera/autoToken")
 
   //添加商品
-router.post('/add',(req,res)=>{
+router.post('/add',autoToken,authPermission,(req,res)=>{
  let {title,name,desc,img,putaway,originalPrice,presentPrice,sales,unit} = req.body 
   insertGoods({title,name,desc,img,putaway,originalPrice,presentPrice,sales,unit})
   .then(()=>{res.send({err:0,msg:'插入成功'})})
@@ -20,7 +22,7 @@ router.get('/',(req,res)=>{
 })
 
 //删除商品
-router.delete('/del',(req,res)=>{
+router.delete('/del',autoToken,authPermission,(req,res)=>{
   let {_id} = req.query
   console.log(_id)
   delGoods(_id)
@@ -29,7 +31,7 @@ router.delete('/del',(req,res)=>{
 })
 
 //更改状态信息
-router.post('/state',(req,res)=>{
+router.post('/state',autoToken,authPermission,(req,res)=>{
   let {_id,putaway} = req.body
   putAway(_id,putaway)
   .then(()=>{res.send({err:0,msg:'修改成功'})})
@@ -37,7 +39,7 @@ router.post('/state',(req,res)=>{
 })
 
 //根据id查找信息
-router.get('/find',(req,res)=>{
+router.get('/find',autoToken,authPermission,(req,res)=>{
   let {id} = req.query
   findOne(id)
   .then((result)=>{res.send({result,err:0,msg:'查找成功'})})
@@ -45,7 +47,7 @@ router.get('/find',(req,res)=>{
 })
 
 //修改商品信息
-router.post('/update',(req,res)=>{
+router.post('/update',autoToken,authPermission,(req,res)=>{
   let news = req.body
   let {_id,obj}=news
   let {title,name,desc,img,putaway,originalPrice,presentPrice,sales,unit}=obj
